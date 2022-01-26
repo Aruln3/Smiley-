@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        height: 100%;
+        width: 100%;
+        background-repeat: unset;
+        font-size: 30px;
+        background-image: linear-gradient(
+          to right top,
+          #009fff,
+          #009fff,
+          #009fff,
+          #009fff,
+          #009fff,
+          #009bff,
+          #0098ff,
+          #0094ff,
+          #018cfe,
+          #1183fd,
+          #237afa,
+          #3270f7
+        );
+      }
+      .face {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        transition: 0.3s;
+        border-radius: 50%;
+        background-image: linear-gradient(
+          to right top,
+          #f2838f,
+          #ff926d,
+          #ffb03f,
+          #f4d700,
+          #b1ff04
+        );
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 4px -3px 92px 30px rgba(255, 0, 0, 1);
+        -webkit-box-shadow: 4px -3px 92px 30px rgba(255, 0, 0, 1);
+        -moz-box-shadow: 4px -3px 92px 30px rgba(255, 0, 0, 1);
+      }
+      .face:hover {
+        transform: rotate(360deg);
+      }
+      .face::before {
+        content: "";
+        position: absolute;
+        top: 93px;
+        width: 88px;
+        height: 40px;
+        background: rgb(17, 17, 17);
+        border-bottom-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        transition: 0.3s;
+      }
+      .face:hover::before,
+      .hide {
+        top: 90px;
+        width: 60px;
+        height: 20px;
+        background: rgb(14, 14, 13);
+        margin-top: 10px;
+        border-radius: 60px;
+        display: block;
+      }
+      .eyes {
+        position: relative;
+        top: -20px;
+        display: flex;
+        transition: 0.3s;
+      }
+      .eyes .eye:hover {
+        background-color: rgb(238, 93, 93);
+      }
+      .eyes .eye {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        display: block;
+        background: #fff;
+        margin: 0 15px;
+        border-radius: 50%;
+      }
+      .eyes .eye::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 22px;
+        background: #000;
+        border-radius: 50%;
+      }
+      .hide {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="face">
+      <div class="eyes">
+        <div class="eye"></div>
+        <div class="eye"></div>
+      </div>
+    </div>
+    <h3 class="hide">Watch arround, don't touch face!</h3>
+    <script>
+      document.querySelector("body").addEventListener("mousemove", eyeball);
+      function eyeball() {
+        var eye = document.querySelectorAll(".eye");
+        eye.forEach(function (eye) {
+          let x = eye.getBoundingClientRect().left + eye.clientWidth / 2;
+          let y = eye.getBoundingClientRect().top + eye.clientHeight / 2;
+          let radian = Math.atan2(event.pageX - x, event.pageY - y);
+          let rot = radian * (180 / Math.PI) * -1 + 270;
+          eye.style.transform = "rotate(" + rot + "deg)";
+        });
+      }
+    </script>
+  </body>
+</html>
